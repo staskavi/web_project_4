@@ -11,6 +11,11 @@
     color: #000000;
     padding: 0;
   }
+
+  .form__input:focus {
+    outline: none;
+    background-color: rgba(211, 211, 211, 0.329);
+  }
   
   @media screen and (max-width: 585px) {
     .form__input {
