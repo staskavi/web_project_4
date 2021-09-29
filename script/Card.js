@@ -29,7 +29,8 @@ export default class Card {
   _deleteCard = (deleteButtonElement) => {
     deleteButtonElement.addEventListener("click", () => {
       const card = deleteButtonElement.closest(".element");
-      card.remove();
+      this._cardElement.remove();
+      this._cardElement = null;
     });
   };
 

@@ -123,11 +123,12 @@ function editPopupForm(){
         openPopup(editProfilePopupWindow);
         inputName.value = profileTitle.textContent;
         inputAbout.value = profileSubtitle.textContent;
-        formEditValidator.resetValidation(editProfilePopupWindow); 
+        formEditValidator.resetValidation(); 
 }
 
 function addPopupForm(){
   openPopup(addImagePopupWindow);
+  formAddValidator.resetValidation();
 }
 
 /*Edit button*/
@@ -143,9 +144,9 @@ const closeOverlayClick = (evt) => {
   isOverlayClicked(evt, closePopup);
 };
 const isEscEvent = (evt, action) => {
-  const activePopup = document.querySelector(".popup_opened");
    //console.log(evt.key);
   if (evt.key === 'Escape') {
+    const activePopup = document.querySelector(".popup_opened");
     action(activePopup);
   }
 };
@@ -153,9 +154,7 @@ const handleEscape = (evt) => {
   isEscEvent(evt, closePopup);
 };
 const isOverlayClicked = (evt, action) => {
-  const activePopup = document.querySelector(".popup_opened");
-
-  if (evt.target === activePopup) {
-    action(activePopup);
+  if (evt.target.classList.contains('popup_opened')) {
+    action(evt.target);
   }
 };
