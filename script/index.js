@@ -1,3 +1,5 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 const initialCards = [
     {
       name: "Yosemite Valley",
@@ -53,17 +55,33 @@ const addImageLink= document.querySelector("#image-link");
 const formEdit = document.querySelector(".form");
 const formAdd = document.querySelector(".form-add");
 const list = document.querySelector(".elements__list");
-const elementTemplate = document.querySelector("#element-template").content.querySelector(".element");//accessing to content of template element
-const popupImage = document.querySelector(".popup-image");
-const photoGrid = document.querySelector(".popup__image-photo");
-const photoGridTitle = document.querySelector(".popup__image-title");
-/*************Show cards from array of cards********************/
-initialCards.forEach((card) => {
-  list.prepend(createElement(card.name, card.link));
-});
-/***************************************************************/
 const closeBtnList = document.querySelectorAll(".popup__btn-close");
-
+export const popupImage = document.querySelector(".popup-image");
+export const photoGrid = document.querySelector(".popup__image-photo");
+export const photoGridTitle = document.querySelector(".popup__image-title");
+/*****************************************************************************/
+const inputSettings = {
+  formSelector: ".form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__btn-save",
+  inactiveButtonClass: "form__btn-save_disabled",
+  inputErrorClass: "form__input-texterror",
+  errorClass: "form__input-error_active",
+};
+/**********creating instances of Card class************/
+const createElement = (cardData) => new Card(cardData, "#element-template");
+const renderElement = (card) => list.prepend(card.generateCard());
+initialCards.forEach((cardItem) => {
+  //console.log("In forEach loop")
+  const card = createElement(cardItem);
+  renderElement(card);
+});
+/**************creating instances of FormValidator Class***********/
+const formEditValidator = new FormValidator(inputSettings, formEdit);
+const formAddValidator = new FormValidator(inputSettings, formAdd);
+formEditValidator.enableValidation();
+formAddValidator.enableValidation();
+/*****************************************************************/
 closeBtnList.forEach((btn) => {
   btn.addEventListener('click', () => {
     closePopup((btn.parentElement).parentElement);//points to parent of parent element to assign the right style for closing popup 
@@ -76,26 +94,27 @@ function handleFormSubmit(evt) {
     profileSubtitle.textContent = inputAbout.value;
     closePopup(editProfilePopupWindow);
     }
-function handleFormAdd(evt) {
-    evt.preventDefault();
-    list.prepend(createElement(addTitle.value, addImageLink.value)); //insert before elements
-    resetForm(formAdd);
-    closePopup(addImagePopupWindow);
-    
-    }
-/****************************************************************/
-function openPopup(popup){
+   
+const handleFormAdd = (evt) => {
+      evt.preventDefault();
+      renderElement(createElement({ name: addTitle.value, link: addImageLink.value }));
+      resetForm(formAdd);
+      closePopup(addImagePopupWindow);
+    };
+/************************************************/
+export function openPopup(popup){
+  console.log("In openPopup Image"+popup)
   popup.classList.add("popup_opened");
   document.addEventListener('keyup', handleEscape);
   document.addEventListener('click', closeOverlayClick);
 }
 
-function closePopup(cardPopup){
+export function closePopup(cardPopup){
   cardPopup.classList.remove("popup_opened");
   document.removeEventListener('keyup', handleEscape);
   document.removeEventListener('click', closeOverlayClick);
 }
-
+/************************************************/
 function resetForm(form){
   form.reset();
 }
@@ -104,7 +123,9 @@ function editPopupForm(){
         openPopup(editProfilePopupWindow);
         inputName.value = profileTitle.textContent;
         inputAbout.value = profileSubtitle.textContent;
+        formEditValidator.resetValidation(editProfilePopupWindow); 
 }
+
 function addPopupForm(){
   openPopup(addImagePopupWindow);
 }
@@ -117,36 +138,6 @@ addBtn.addEventListener("click",addPopupForm);
 formEdit.addEventListener("submit", handleFormSubmit);
 /*form Add(plus) button*/
 formAdd.addEventListener("submit", handleFormAdd);
-
-/*****************************************************************************************/
-function createElement(name, link) {
-
-    const elementCard = elementTemplate.cloneNode(true);// cloning the element with all its content 
-    const elementImage = elementCard.querySelector(".element__image");
-    const elementDelBtn = elementCard.querySelector(".element__btn-del");
-    const elementTitle = elementCard.querySelector(".element__title");
-    const elementLikeBtn = elementCard.querySelector(".element__btn-like");
-    elementTitle.textContent = name;
-    elementImage.src = link;
-    elementImage.alt = name;
-    elementDelBtn.addEventListener("click", function() {
-      const listItem = elementDelBtn.closest('.element');
-      listItem.remove();
-    })
-    elementLikeBtn.addEventListener("click", function(evt) {
-        evt.target.classList.toggle("element__btn-like_active");//like button on/off
-    })
-    elementImage.addEventListener("click", () => {
-     // let image = document.querySelector(".popup__image-photo");
-     // let title = document.querySelector(".popup__image-title");
-      photoGrid.src = link;
-      photoGrid.alt = name;
-      photoGridTitle.textContent = name;
-      openPopup(popupImage);
-    });
-    return elementCard;
-}
-/************************************************************************/
 
 const closeOverlayClick = (evt) => {
   isOverlayClicked(evt, closePopup);
