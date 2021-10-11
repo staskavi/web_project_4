@@ -4,26 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Around The U.S.</title>
-  <link rel="shortcut icon" type="image/jpg" href="./images/favicon.png">
-  <link rel="stylesheet" href="./pages/index.css">
+  <link rel="shortcut icon" type="image/png" href="<%=require('./images/favicon.png')%>">
+   <!--<link rel="stylesheet" href="./pages/index.css">-->
 </head>
 <body class="page">
     <!--HEADER-->
     <header class="header">
-      <img class="header__logo" src="./images/Around.svg" alt="Around the U.S. logo">
+      <img class="header__logo" src="<%=require('./images/Around.svg')%>" alt="Around the U.S. logo">
     </header>
     <!--CONTENT-->
     <main class="content">
       <!--PROFILE-->
       <section class="profile">
         <div class="profile__container">
-            <img class="profile__image" src="./images/cousteau.jpg" alt="Jacques Cousteau">
+            <img class="profile__image" src="<%=require('./images/cousteau.jpg')%>" alt="Jacques Cousteau">
           <div class="profile__info">
             <div class="profile__text">
-              <h1 class="profile__title">Jacques Cousteau
-              </h1>
-              <p class="profile__subtitle">Explorer
-              </p>
+              <h1 class="profile__title">Jacques Cousteau</h1>
+              <p class="profile__subtitle">Explorer</p>
             </div>
             <button class="profile__btn-edit" type="button" aria-label="">
             </button>
@@ -50,10 +48,10 @@
         </button>
         <form class="form" name="edit_form" action="#" novalidate>
           <h2 class="form__edit-title">Edit Profile</h2>
-          <input class="form__input" id="profile-name" type="text" value="" placeholder="Name" name="edit_name" minlength="2" maxlength="40" required>
+          <input class="form__input profile-name" id="profile-name" type="text" value="" placeholder="Name" name="edit_name" minlength="2" maxlength="40" required>
           <span class="form__input-error" id="profile-name-error">This field is required.
           </span>
-          <input class="form__input" id="profile-about" type="text" value="" placeholder="About Me" name="edit_about" minlength="2" maxlength="200" required>
+          <input class="form__input profile-about" id="profile-about" type="text" value="" placeholder="About Me" name="edit_about" minlength="2" maxlength="200" required>
             <span class="form__input-error" id="profile-about-error">This field is required.
             </span>
           <button class="form__btn-save" type="submit" aria-label="Save">Save</button>
@@ -67,10 +65,10 @@
         </button>
         <form class="form form-add" name="add_form"  action="#" novalidate>
           <h2 class="form__edit-title">New Place</h2>
-          <input class="form__input" id="title" type="text" value="" placeholder="Title" name="add_title" minlength="1" maxlength="30" required>
+          <input class="form__input" id="title" type="text" value="" placeholder="Title" name="name" minlength="1" maxlength="30" required>
           <span class="form__input-error" id="title-error">This field is required.
           </span>
-          <input class="form__input" id="image-link" type="url" value="" placeholder="Image Link" name="add_image-link"  required>
+          <input class="form__input" id="image-link" type="url" value="" placeholder="Image Link" name="link"  required>
           <span class="form__input-error" id="image-link-error">This field is required.
           </span>
           <button class="form__btn-save" type="submit" aria-label="Create">Create</button>
@@ -103,8 +101,5 @@
         </div>
       </li>
     </template>
-   <script type="module" src="./script/FormValidator.js"></script>
-   <script type="module" src="./script/index.js"></script>
-   <script type="module" src="./script/Card.js"></script>
  </body>
 </html>

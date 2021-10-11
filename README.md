@@ -6,4 +6,6 @@ HTML
 CSS
 JavaScript
 Responsive design by using media queries
+Build with OOP methodology
+Used Webpack 5
 Link to site: https://staskavi.github.io/web_project_4/
