@@ -10,7 +10,6 @@ export default class FormValidator {
       const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
       inputElement.classList.add(inputErrorClass);
       errorElement.textContent = errorMessage;
-      console.log(inputElement.id+"-error")
       errorElement.classList.add(errorClass);
     };
   
@@ -64,7 +63,7 @@ export default class FormValidator {
     }
   
     resetValidation() {
-      this._inputList.forEach((input) => {this._hideInputError(input);})
+      this._inputList.forEach(this._hideInputError);
       this._toggleButtonState();
     }
   }

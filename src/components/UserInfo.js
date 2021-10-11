@@ -7,14 +7,13 @@ export default class UserInfo {
     getUserInfo() {
       const name = this._name.textContent;
       const about = this._about.textContent;
-      console.log(name);
       return { name, about };
     }
   
     setUserInfo(userInfo) {
-      const { edit_name, edit_about } = userInfo;//destuction
-      this._name.textContent =  edit_name;
-      this._about.textContent =  edit_about;
+      const { editName, editAbout } = userInfo;//destuction
+      this._name.textContent =  editName;
+      this._about.textContent =  editAbout;
     }
   }
   

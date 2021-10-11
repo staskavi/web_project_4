@@ -1,4 +1,4 @@
-import '../pages/index.css';
+import './index.css';
 import favicon from '../images/favicon.png';
 import headerLogoSrc from "../images/Around.svg";
 import profileImgSrc from '../images/cousteau.jpg';
@@ -71,12 +71,12 @@ const generateCardInstance = (data) => {
   });
   return cardInstance;
 };
-/*Rendering default Pictures from array*/
+/** Rendering default Pictures from array. */
 const cardList = new Section(
   {
     items: initialCards,
     renderer: (data) => {
-      cardList.setItem(generateCardInstance(data).generateCard());
+      cardList.addItem(generateCardInstance(data).generateCard());
     },
   },
   list
