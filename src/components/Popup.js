@@ -30,7 +30,7 @@ export default class Popup {
   removeEventListeners() {
     this._popup.querySelector(closePopupButton).removeEventListener('click', this._handleCloseBtn);
     document.removeEventListener('keydown', this._handleEscapeClose);
-    this._popup.addEventListener('click', this._handleOverlayClose);
+    this._popup.removeEventListener('click', this._handleOverlayClose);
   }
   
   open() {

@@ -68,7 +68,7 @@ api.getAll()
       },
       handleCardDelete: (cardId) => {
         confirmDeletePopup.open();
-        confirmDeletePopup.handleDelete(() => {
+        confirmDeletePopup.setNewHandler(() => {
           api.deleteCard(cardId)
               .then(() => {
               cardInstance.deleteCard();

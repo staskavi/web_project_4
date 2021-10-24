@@ -14,7 +14,7 @@ export default class PopupWithForm extends Popup {
     return this._formValues;
   }
 
-  handleDelete(handle) {
+  setNewHandler(handle) {
     this._handleSubmitForm = handle;
   }
 
