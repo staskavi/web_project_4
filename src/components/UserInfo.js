@@ -1,7 +1,8 @@
 export default class UserInfo {
-    constructor(profileTitle, profileSubtitle) {
+    constructor(profileTitle, profileSubtitle, profileImage) {
       this._name = document.querySelector(profileTitle);
       this._about = document.querySelector(profileSubtitle);
+      this._image = document.querySelector(profileImage);
     }
   /*Public getter & setter*/
     getUserInfo() {
@@ -11,9 +12,10 @@ export default class UserInfo {
     }
   
     setUserInfo(userInfo) {
-      const { editName, editAbout } = userInfo;//destuction
-      this._name.textContent =  editName;
-      this._about.textContent =  editAbout;
+      const { name, about, avatar } = userInfo;//destuction
+      this._name.textContent =  name;
+      this._about.textContent =  about;
+      this._image.src = avatar;
     }
   }
   

@@ -10,14 +10,17 @@
 <body class="page">
     <!--HEADER-->
     <header class="header">
-      <img class="header__logo" src="<%=require('./images/Around.svg')%>" alt="Around the U.S. logo">
+       <img class="header__logo" src="<%=require('./images/Around.svg')%>" alt="Around the U.S. logo">
     </header>
     <!--CONTENT-->
     <main class="content">
       <!--PROFILE-->
       <section class="profile">
         <div class="profile__container">
-            <img class="profile__image" src="<%=require('./images/cousteau.jpg')%>" alt="Jacques Cousteau">
+          <div class="profile__avatar-container">
+            <button class="profile__btn-avatar-edit" type="button" aria-label=""> </button>
+              <img class="profile__image" src="<%=require('./images/cousteau.jpg')%>" alt="Jacques Cousteau">
+          </div>
           <div class="profile__info">
             <div class="profile__text">
               <h1 class="profile__title">Jacques Cousteau</h1>
@@ -38,7 +41,7 @@
     </main>
     <!--FOOTER-->
     <footer class="footer">
-      <p class="footer__copyright">&copy; 2021 Around The U.S.
+      <p class="footer__copyright">&copy; 2021 Around The U.S. StasK.
       </p>
     </footer>
     <!--POPUP EDIT-->
@@ -54,7 +57,8 @@
           <input class="form__input profile-about" id="profile-about" type="text" value="" placeholder="About Me" name="editAbout" minlength="2" maxlength="200" required>
             <span class="form__input-error" id="profile-about-error">This field is required.
             </span>
-          <button class="form__btn-save" type="submit" aria-label="Save">Save</button>
+          <button class="form__btn-save" type="submit" aria-label="Save">Save
+          </button>
         </form>
       </div>
     </div>
@@ -87,6 +91,30 @@
         </div>
       </div>
     </div>
+     <!--POPUP CONFIRM DEL PICTURE-->
+     <div class="popup popup-del-card">
+      <div class="popup__container">
+        <form  class="form" name="del-confirm_form" action="#" novalidate>
+        <button class="popup__btn-close" type="button" aria-label=""></button>
+          <h2 class="form__edit-title">Are you shure?</h2>
+          <button class="form__btn-save" type="submit" aria-label="">Yes</button>
+      </form>
+      </div>
+    </div>
+     <!--POPUP Change Profile Picture-->
+     <div class="popup popup-change-profile-img">
+      <div class="popup__container">
+        <button class="popup__btn-close" type="button" aria-label="">
+        </button>
+        <form class="form form-add" name="edit_form" action="#" novalidate>
+          <h2 class="form__edit-title">Change Profile Picture</h2>
+          <input class="form__input" type="url" name="avatar" id="avatar" value="" placeholder="Avatar url" name="link" required>
+          <span class="form__input-error" id="avatar-error">This field is required.
+          </span>
+          <button class="form__btn-save" type="submit" aria-label="Save">Save</button>
+        </form>
+      </div>
+    </div>
     <!--TEMPLATE-->
     <template id="element-template">
       <li class="element">
@@ -96,8 +124,11 @@
         <div class="element__container">
           <h2 class="element__title">
           </h2>
-          <button class="element__btn-like" type="button" aria-label="Like">
-          </button>
+          <container class="element__likes-container">
+             <button class="element__btn-like" type="button" aria-label="Like">
+             </button>
+             <p class="element__num-of-likes"></p>
+          </container>
         </div>
       </li>
     </template>
